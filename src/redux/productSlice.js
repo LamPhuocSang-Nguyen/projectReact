@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 
-const url = "https://covers.openlibrary.org/b/isbn/0385472579-S.jpg"
+const url = "https://coffee.alexflipnote.dev/hjpM1TCc78U_coffee.jpg"
 
 const initialState = {
     product: "",

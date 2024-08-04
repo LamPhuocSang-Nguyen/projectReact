@@ -1,7 +1,12 @@
 import React from 'react'
 import Header from '../../components/header/Header'
+import { Container } from '@mui/material'
+
+
 export default function HeaderPages() {
   return (
-    <div><Header /></div>
+    <Container maxWidth="false" disableGutters="true">
+      <Header />
+    </Container>
   )
 }

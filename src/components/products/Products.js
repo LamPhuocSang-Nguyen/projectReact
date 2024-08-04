@@ -32,7 +32,7 @@ export default function Products() {
             <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                     sx={{ height: 140 }}
-                    image={product}
+                    image='https://coffee.alexflipnote.dev/hjpM1TCc78U_coffee.jpg'
                     title="green iguana"
                 />
                 <CardContent>
