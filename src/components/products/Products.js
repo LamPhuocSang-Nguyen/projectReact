@@ -4,28 +4,28 @@ import { fetchProduct } from '../../redux/productSlice'
 import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 
 export default function Products() {
-    const dispatch = useDispatch();
-    const product = useSelector((state) => state.product.product)
-    const status = useSelector((state) => state.product.status);
-    const error = useSelector((state) => state.product.error);
+    // const dispatch = useDispatch();
+    // const product = useSelector((state) => state.product.product)
+    // const status = useSelector((state) => state.product.status);
+    // const error = useSelector((state) => state.product.error);
 
 
-    useEffect(() => {
-        if (status === 'start') {
-            dispatch(fetchProduct());
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (status === 'start') {
+    //         dispatch(fetchProduct());
+    //     }
+    // }, []);
 
-    if (status === 'loading') {
-        return <div>Loading...</div>;
-    }
+    // if (status === 'loading') {
+    //     return <div>Loading...</div>;
+    // }
 
-    if (status === 'failed') {
-        return <div>Error: {error}</div>;
-    }
+    // if (status === 'failed') {
+    //     return <div>Error: {error}</div>;
+    // }
 
 
-    console.log(product)
+    // console.log(product);
 
     return (
         <div>
