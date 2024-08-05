@@ -12,11 +12,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export default function Header() {
-  const pages = ["Products", "Pricing", "Blog"];
+  const pages = ["Products", "Pricing", "Blog", "Feature", "About"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -46,10 +45,12 @@ export default function Header() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Container maxWidth="false" disableGutters="true">
+      <Container maxWidth="false" disableGutters>
         <AppBar position="static">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1}}>
+              <img src="/attachment_96708937.png" alt="Logo" style={{ height: 40 }} />
+            </Box>
             <Typography
               variant="h6"
               noWrap
@@ -61,11 +62,11 @@ export default function Header() {
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "#947b61",
                 textDecoration: "none",
               }}
             >
-              LOGO
+              Bean
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -123,12 +124,12 @@ export default function Header() {
             >
               LOGO
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex"}, marginLeft:"50%"}}>
               {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, color: "#333", display: "block", marginLeft:"40px" }}
                 >
                   {page}
                 </Button>

@@ -7,7 +7,7 @@ import { Container } from "@mui/material";
 
 export default function Home() {
   return (
-    <Container maxWidth="false" disableGutters='true'>
+    <Container maxWidth="false" disableGutters>
       <HeaderPages />
       <Carousel />
       <Products />

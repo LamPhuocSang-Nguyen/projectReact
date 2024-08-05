@@ -2,17 +2,17 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 
-const url = "https://coffee.alexflipnote.dev/hjpM1TCc78U_coffee.jpg"
+const url = "https://jellybellywikiapi.onrender.com/api/Beans/";
 
 const initialState = {
-    product: "",
+    product: [],
     status: 'start',
     error: null,
-    totalPage:30,
+    totalPage:12,
     currentPage:1
 }
-export const fetchProduct = createAsyncThunk('product/fetchProduct', async() =>{
-    const respone = await axios.get(url);
+export const fetchProduct = createAsyncThunk('product/fetchProduct', async(page) =>{
+    const respone = await axios.get(`${url}?page=${page}&&limit=5$&pageSize=12`);
     return respone.data;
 });
 
@@ -28,6 +28,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchProduct.fulfilled, (state, action) => {
                 state.status = 'succeeded';
+                console.log(action.payload)
                 state.product = action.payload;
             })
             .addCase(fetchProduct.rejected, (state, action) => {

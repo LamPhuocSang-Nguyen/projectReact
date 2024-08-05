@@ -5,7 +5,7 @@ import { Container } from '@mui/material'
 
 export default function HeaderPages() {
   return (
-    <Container maxWidth="false" disableGutters="true">
+    <Container maxWidth="false" disableGutters>
       <Header />
     </Container>
   )
