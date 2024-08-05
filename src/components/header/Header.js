@@ -13,12 +13,17 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { getBackGround } from "../../redux/carouselSlide";
+import { useDispatch, useSelector } from "react-redux";
+import { red } from "@mui/material/colors";
 
 export default function Header() {
   const pages = ["Products", "Pricing", "Blog", "Feature", "About"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const dispatch = useDispatch();
+  const currentBackground = useSelector((state)=>state.carousel.currentBackground)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -38,26 +43,28 @@ export default function Header() {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: "#EAEAEA",
+        main: "#fff",
       },
     },
   });
+
+  console.log(dispatch(getBackGround))
 
   return (
     <ThemeProvider theme={darkTheme}>
       <Container maxWidth="false" disableGutters>
         <AppBar position="static">
           <Toolbar disableGutters>
-            <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1}}>
-              <img src="/attachment_96708937.png" alt="Logo" style={{ height: 40 }} />
-            </Box>
+            {/* <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1}}>
+              <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/1de6e67e-4768-45de-8bce-8f95dbd7a031?max=114" alt="Logo" style={{ height: 40 }} />
+            </Box> */}
             <Typography
               variant="h6"
               noWrap
               component="a"
               href="#app-bar-with-responsive-menu"
               sx={{
-                mr: 2,
+                mr: 1,
                 display: { xs: "none", md: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
@@ -66,7 +73,7 @@ export default function Header() {
                 textDecoration: "none",
               }}
             >
-              Bean
+              <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/1de6e67e-4768-45de-8bce-8f95dbd7a031?max=114"></img>
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -105,7 +112,10 @@ export default function Header() {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
+            {/* <Box>
+              <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/1de6e67e-4768-45de-8bce-8f95dbd7a031?max=114"></img>
+            </Box> */}
             <Typography
               variant="h5"
               noWrap
@@ -122,14 +132,15 @@ export default function Header() {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/1de6e67e-4768-45de-8bce-8f95dbd7a031?max=114"></img>
+              {/* LOGO */}
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex"}, marginLeft:"50%"}}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex"}, marginLeft:"20%"}}>
               {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "#333", display: "block", marginLeft:"40px" }}
+                  sx={{ my: 2, color: "#333", display: "block", marginLeft:"30px" }}
                 >
                   {page}
                 </Button>

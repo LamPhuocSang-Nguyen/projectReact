@@ -11,36 +11,18 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { Container } from '@mui/material';
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { setBackGround } from '../../redux/carouselSlide';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const images = [
-  {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath:
-      'https://cdn-tp1.mozu.com/9046-m1/cms/files/ab692677-5471-4863-91a8-659363ae4cc4',
-  },
-  {
-    label: 'Bird',
-    imgPath:
-      'https://cdn-tp1.mozu.com/9046-m1/cms/files/75fea694-ed38-4e84-a86e-182e31ea5a7b',
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath:
-      'https://cdn-tp1.mozu.com/9046-m1/cms/files/63b9e71d-9866-4044-9af7-7a64a52b0e0e',
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://cdn-tp1.mozu.com/9046-m1/cms/files/6f0c6164-71c8-47f6-a55f-893f5fd58fa0',
-  },
-];
-
 function Carousel() {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = images.length;
+  const {carousel} = useSelector((state)=>state.carousel);
+  const maxSteps = carousel.length;
+  //const [bgcolor, setBgcolor] = useState("");
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -54,30 +36,21 @@ function Carousel() {
     setActiveStep(step);
   };
 
+  const getbackground = (a)=>{
+    dispatch(setBackGround(a));
+  }
+
   return (
     <Container maxWidth="false" disableGutters>
       <Box sx={{ flexGrow: 1 }}>
-        {/* <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
-        }}
-      >
-        <Typography>{images[activeStep].label}</Typography>
-      </Paper> */}
         <AutoPlaySwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
         >
-          {images.map((step, index) => (
-            <div key={step.label}>
+          {carousel.map((step, index) => (
+            <div key={index}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <Box
                   component="img"
@@ -85,10 +58,12 @@ function Carousel() {
                     display: 'block',
                     overflow: 'hidden',
                     width: '100%',
-                    backgroundColor:"#EAEAEA",
+                    backgroundColor:`${step.bg}`,
                   }}
                   src={step.imgPath}
-                  alt={step.label}
+                  //alt={step.label}
+                  //setBgcolor={step.bg}
+                  //onchange={()=>getbackground(bgcolor)}
                 />
               ) : null}
             </div>
