@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import {Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
+import React from 'react'
+import {Box } from '@mui/material';
 
 
 
@@ -10,25 +10,14 @@ export default function Product(props) {
     return (
         <div>
             {
-                <Card key={id} sx={{ maxWidth: 345 }}>
-                    <CardMedia
-                        sx={{ height: 140 }}
-                        image={imageUrl}
-                        title="green iguana"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {flavorName}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {description}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Share</Button>
-                        <Button size="small">Learn More</Button>
-                    </CardActions>
-                </Card>
+                <Box component="img" key={id}
+                sx={{
+                    width: '350px',
+                    height: "300px",
+                }}
+                src={imageUrl}
+                alt="candy"
+                />
             }
         </div >
     )

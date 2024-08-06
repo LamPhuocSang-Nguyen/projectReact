@@ -1,9 +1,9 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 
 export default function Footer() {
   return (
-    <Box
+    <Box maxWidth="false" disableGutters
       sx={{
         width: "100%",
         height: "auto",
@@ -12,7 +12,7 @@ export default function Footer() {
         paddingBottom: "1rem",
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="false" disableGutters>
         <Grid container direction="column" alignItems="center">
           <Grid item xs={12}>
             <Typography color="black" variant="h5">

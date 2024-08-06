@@ -7,7 +7,7 @@ function App() {
       <Router>
 
         <Routes>
-          <Route path="/" index element={<Home />}></Route>
+          <Route path="/projectReact" index element={<Home />}></Route>
           {/* <Route path="/detail/:id" element={<ProductDetail />}></Route> */}
           {/* <Route path="/ShowCart" element={<ShowCart />}></Route>
 <Route path="/ShowCats" element={<ShowCats />}></Route> */}

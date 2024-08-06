@@ -12,7 +12,7 @@ const initialState = {
     currentPage:1
 }
 export const fetchProduct = createAsyncThunk('product/fetchProduct', async(page) =>{
-    const respone = await axios.get(`${url}?page=${page}&&limit=5$&pageSize=12`);
+    const respone = await axios.get(`${url}?pageIndex=${page}&pageSize=12`);
     return respone.data;
 });
 
@@ -28,8 +28,8 @@ const productSlice = createSlice({
             })
             .addCase(fetchProduct.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                console.log(action.payload)
                 state.product = action.payload;
+                console.log(state.product)
             })
             .addCase(fetchProduct.rejected, (state, action) => {
                 state.status = 'failed';

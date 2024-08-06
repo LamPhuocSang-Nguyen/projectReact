@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProduct } from "../../redux/productSlice";
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Product from "../product/Product";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+// import Paper from '@mui/material/Paper';
+// import { styled } from '@mui/material/styles';
+
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -17,6 +20,7 @@ export default function Products() {
 
   useEffect(() => {
     dispatch(fetchProduct(currentPage));
+    console.log(currentPage);
   }, [currentPage]);
 
   if (status === "loading") {
@@ -27,42 +31,47 @@ export default function Products() {
     return <div>Error: {error}</div>;
   }
 
-  console.log(product);
-
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
 
   // const Item = styled(Paper)(({ theme }) => ({
-  //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  //     ...theme.typography.body2,
-  //     padding: theme.spacing(1),
-  //     textAlign: 'center',
-  //     color: theme.palette.text.secondary,
+  //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: 'center',
+  //   color: theme.palette.text.secondary,
   // }));
 
   return (
-    <div>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          {product.items &&
-            product.items.map((item) => (
-              <Grid item key={item.beanId}>
-                <Product
-                  key={item.beanId}
-                  id={item.beanId}
-                  flavorName={item.flavorName}
-                  description={item.description}
-                  imageUrl={item.imageUrl}
-                />
-              </Grid>
-            ))}
-        </Grid>
-      </Box>
-      <Stack spacing={2}>
-        <Typography>Page: {currentPage}</Typography>
-        <Pagination count={10} page={currentPage} onChange={handlePageChange} />
-      </Stack>
-    </div>
+    <Container>
+      <Grid container spacing={2}>
+        {product.items && product.items.map((item,index) => (
+          <Grid key={index} item>
+            <Product
+              key={item.beanId}
+              id={item.beanId}
+              flavorName={item.flavorName}
+              description={item.description}
+              imageUrl={item.imageUrl}
+            />
+          </Grid>
+        ))}
+      </Grid>
+
+      <Grid
+      container
+      direction="row"
+      justifyContent="center"
+       alignItems="center"
+      >
+        <Stack spacing={2}>
+          <Typography>Page: {currentPage}</Typography>
+          <Pagination count={10} page={currentPage} onChange={handlePageChange} />
+        </Stack>
+      </Grid>
+
+
+    </Container>
   );
 }

@@ -1,0 +1,71 @@
+.MuiGrid-grid-xs-6{
+    position: relative;
+}
+
+.MuiGrid-grid-xs-6 section h2{
+    width: 400px;
+    height: 400px;
+    color:#fff;
+    font-size: 96px;
+    letter-spacing: -5px;
+    position: absolute;
+    top: 30%;
+    left:20%;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: merel, sans-serif;
+    line-height: 1.4;
+}
+
+/* @media screen and (max-width: 768px){
+    .MuiGrid-grid-xs-6 section h2{
+        width: 350px;
+        height: 300px;
+        color:#fff;
+        font-size: 70px;
+        letter-spacing: -1px;
+        position: absolute;
+        top: 30%;
+        left:10%;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .MuiGrid-grid-xs-6 section h2{
+        width: 100%;
+        height: 100px;
+        color:#fff;
+        font-size: 40px;
+        letter-spacing: -1px;
+        position: absolute;
+        top: 30%;
+        left:4%;
+    }
+}
+
+@media screen and (max-width: 320px){
+    .MuiGrid-grid-xs-6 section h2{
+        width: 100%;
+        height: 100px;
+        color:#fff;
+        font-size: 30px;
+        letter-spacing: -1px;
+        position: absolute;
+        top: 30%;
+        left:1%;
+    }
+}
+
+@media screen and (max-width: 240px){
+    .MuiGrid-grid-xs-6 section h2{
+        width: 100%;
+        height: 100px;
+        color:#fff;
+        font-size: 30px;
+        letter-spacing: -1px;
+        position: absolute;
+        top: 30%;
+        left:5%;
+    }
+}
+ */
