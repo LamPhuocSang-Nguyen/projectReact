@@ -5,21 +5,20 @@ import axios from 'axios'
 const url = "https://jellybellywikiapi.onrender.com/api/Beans/";
 
 const initialState = {
-    product: [],
+    barcandy: [],
     status: 'start',
     error: null,
     totalPage:12,
     currentPage:1
 }
-export const fetchProduct = createAsyncThunk('product/fetchProduct', async(page) =>{
-    const respone = await axios.get(`${url}?pageIndex=${page}&pageSize=12`);
+export const fetchProduct = createAsyncThunk('barcandy/fetchProduct', async(page) =>{
+    const respone = await axios.get(`${url}?pageIndex=${page}&pageSize=50`);
     return respone.data;
 });
 
 
-
-const productSlice = createSlice({
-    name: "product",
+const showbarcandySlice = createSlice({
+    name: "barcandy",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -29,7 +28,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchProduct.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.product = action.payload;
+                state.barcandy = action.payload;
             })
             .addCase(fetchProduct.rejected, (state, action) => {
                 state.status = 'failed';
@@ -39,4 +38,4 @@ const productSlice = createSlice({
 
 })
 
-export default productSlice.reducer
+export default showbarcandySlice.reducer

@@ -100,7 +100,7 @@ export default function Header() {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <MenuItem key={page} onClick={handleCloseNavMenu} href="/productsHomePage">
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))}
@@ -129,6 +129,7 @@ export default function Header() {
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
+                  href="/productsHomePage"
                   sx={{
                     my: 2,
                     display: "block",
@@ -137,7 +138,7 @@ export default function Header() {
                     fontSize: "16px",
                     fontWeight: "700",
                     textTransform: "uppercase",
-                    padding:"30px"
+                    padding:"30px",
                   }}
                 >
                   {page}

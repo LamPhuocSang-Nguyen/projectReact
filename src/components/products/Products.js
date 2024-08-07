@@ -20,7 +20,6 @@ export default function Products() {
 
   useEffect(() => {
     dispatch(fetchProduct(currentPage));
-    console.log(currentPage);
   }, [currentPage]);
 
   if (status === "loading") {

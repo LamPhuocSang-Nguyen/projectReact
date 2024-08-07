@@ -1,20 +1,21 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import "./App.css"
+import ProductsHomePage from "./pages/productsHomePage/ProductsHomePage";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function App() {
   return (
-    <div>
-      <Router>
-
-        <Routes>
-          <Route path="/projectReact" index element={<Home />}></Route>
-          {/* <Route path="/detail/:id" element={<ProductDetail />}></Route> */}
-          {/* <Route path="/ShowCart" element={<ShowCart />}></Route>
-<Route path="/ShowCats" element={<ShowCats />}></Route> */}
-          {/* <Route path="/*" element={<NotFound />}></Route> */}
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/projectReact" element={<Home />} />
+        <Route path="/productsHomePage" element={<ProductsHomePage />} />
+        {/* <Route path="/detail/:id" element={<ProductDetail />} /> */}
+        {/* <Route path="/ShowCats" element={<ShowCats />} /> */}
+        {/* <Route path="/*" element={<NotFound />} /> */}
+      </Routes>
+    </Router>
   );
 }
 

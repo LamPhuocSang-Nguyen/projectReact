@@ -1,94 +1,129 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct } from '../../redux/productSlice';
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import { fetchProduct } from '../../redux/showbarcandySlice';
+import { Container, Box, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import { useEffect, useState, useRef } from 'react';
 
 
 function Barcandy() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
   const dispatch = useDispatch();
-  const {product} = useSelector((state)=>state.product);
-  const maxSteps = product.items.length;
+  const { barcandy } = useSelector((state) => state.barcandy);
+  const theme = useTheme();
+  // const [activeStep, setActiveStep] = React.useState(0);
+  // const maxSteps = 12;
+  const status = useSelector((state) => state.product.status);
+  const error = useSelector((state) => state.product.error);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const stackRef = useRef()
+
+  useEffect(() => {
+    dispatch(fetchProduct(currentPage));
+  }, [dispatch, currentPage]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "failed") {
+    return <div>Error: {error}</div>;
+  }
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setCurrentPage(currentPage + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
   };
 
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
+
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {product.items&&product.items.map((step, index) => (
-          <div key={index}>
-            {Math.abs(activeStep - index) <= 2 ? (
+    <Container maxWidth="false" disableGutters>
+      <Stack direction="row" ref={stackRef} sx={{position: 'relative'}}>
+        {
+          barcandy.items && barcandy.items.map((item, index) => (
+            <Box 
+              sx={{
+                width: '100%',
+                backgroundColor: `${item.backgroundColor}`,
+                height: '116px',
+                minWidth: '140px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}>
               <Box
                 component="img"
                 sx={{
-                  height: 255,
                   display: 'block',
-                  maxWidth: 400,
-                  overflow: 'hidden',
-                  width: '100%',
+                  overflow: 'clip',
+                  width: '83px',
+                  height: '56px',
+                  maxWidth: '83px',
+                  margin: '23px 0 0 8px',
+                  overflowClipMargin: 'content-box',
+                  zIndex: '6',
                 }}
-                src={step.imageUrl}
-                alt={step.flavorName}
+                src={item.imageUrl}
+                alt={`Carousel image ${index}`}
               />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
+              <Typography sx={{
+                textTransform: 'uppercase',
+                width: 'auto',
+                padding: '0 3px',
+                color: 'white',
+                fontSize: '17px',
+                fontWeight: '800',
+                letterSpacing: '0',
+                lineHeight: '14px',
+                textAlign: 'center',
+                margin: '0 0 0 0',
+                opacity: '0',
+                zIndex: '2',
+              }}></Typography>
+            </Box>
+          ))
+        }
+      </Stack>
+
+      <MobileStepper maxWidth="false" disableGutters
         position="static"
-        activeStep={activeStep}
+        variant="none"
+        sx={{
+          flexGrow: 1,
+        }}
         nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
+          <Button size="small" onClick={handleNext} sx={{height:'116px', transform: "translateY(-116%)", position:'absolute', zIndex:'6', left:'95%', top:'106%'}}>
+            
             {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
+              <KeyboardArrowLeft sx={{width: "100px", height: "100px", color:"#fff", fontWeight:"800"}}/>
             ) : (
-              <KeyboardArrowRight />
+              <KeyboardArrowRight sx={{width: "100px", height: "100px", color:"#fff", fontWeight:"800"}}/>
             )}
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="small" onClick={handleBack} disabled={currentPage === 1} sx={{height:'116px', transform: "translateY(-116%)", position:'absolute', zIndex:'6', right:'95%', top:'106%'}}>
             {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
+              <KeyboardArrowRight sx={{width: "100px", height: "100px", color:"#fff", fontWeight:"800"}}/>
             ) : (
-              <KeyboardArrowLeft />
+              <KeyboardArrowLeft sx={{width: "100px", height: "100px", color:"#fff", fontWeight:"800"}}/>
             )}
-            Back
+            
           </Button>
         }
       />
-    </Box>
+    </Container>
   );
 }
 
