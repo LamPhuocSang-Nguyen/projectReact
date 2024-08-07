@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 
 export default function Products() {
   const dispatch = useDispatch();
-  const { product, totalPage } = useSelector((state) => state.product);
+  const { product } = useSelector((state) => state.product);
   const status = useSelector((state) => state.product.status);
   const error = useSelector((state) => state.product.error);
   const [currentPage, setCurrentPage] = useState(1);

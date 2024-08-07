@@ -5,6 +5,7 @@ import Carousel from "../../components/carousel/Carousel";
 import Footer from "../../components/footer/Footer"
 import { Container } from "@mui/material";
 import Title from "../../components/title/Title";
+import BarCandyPage from "../BarCandyPage/BarCandyPage";
 
 export default function Home() {
 
@@ -14,6 +15,7 @@ export default function Home() {
     <Container maxWidth="false" disableGutters>
       <HeaderPages/>
       <Carousel />
+      <BarCandyPage />
       <Title />
       <Products />
       <Footer />
