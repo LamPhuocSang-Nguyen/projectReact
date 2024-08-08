@@ -135,10 +135,11 @@ export default function Header() {
                     display: "block",
                     marginLeft: "30px",
                     color: "#fff",
-                    fontSize: "16px",
+                    fontSize: "14px",
                     fontWeight: "700",
                     textTransform: "uppercase",
                     padding:"30px",
+                    fontFamily: "merel,sans-serif",
                   }}
                 >
                   {page}

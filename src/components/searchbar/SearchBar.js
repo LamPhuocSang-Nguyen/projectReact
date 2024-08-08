@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import "./SearchBar.css";
+import { searchProduct } from '../../redux/productSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,7 +53,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
+
 export default function SearchBar() {
+  const dispatch = useDispatch();
+  const {product} = useSelector((state)=>state.product);
+
+
+  const handleInput = (event)=>{
+    if (event.key === 'Enter') {
+      const name = event.target.value;
+      dispatch(searchProduct(name));
+    }
+  }
+
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: '#f4f4f4' }}>
@@ -64,13 +79,14 @@ export default function SearchBar() {
           >
             single flavours
           </Typography>
-          <Search>
+          <Search sx={{backgroundColor:'red'}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onKeyDown={handleInput}
             />
           </Search>
         </Toolbar>

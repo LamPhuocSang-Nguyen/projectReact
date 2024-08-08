@@ -16,6 +16,11 @@ export const fetchProduct = createAsyncThunk('product/fetchProduct', async(page)
     return respone.data;
 });
 
+export const searchProduct = createAsyncThunk('product/searchProduct', async(name)=>{
+    const respone = await axios.get(`${url}?flavorName=${name}`);
+    return respone.data;
+})
+
 
 
 const productSlice = createSlice({
@@ -30,6 +35,7 @@ const productSlice = createSlice({
             .addCase(fetchProduct.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.product = action.payload;
+                console.log(action.payload)
             })
             .addCase(fetchProduct.rejected, (state, action) => {
                 state.status = 'failed';

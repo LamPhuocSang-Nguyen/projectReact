@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Slider from "react-slick";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct } from '../../redux/showbarcandySlice';
+import "./CandyCenterMode.css";
 
 function CenterMode() {
     const settings = {
@@ -11,7 +12,7 @@ function CenterMode() {
         infinite: true,
         centerPadding: "60px",
         slidesToShow: 14,
-        speed: 500
+        speed: 500,
     };
 
     const dispatch = useDispatch();
