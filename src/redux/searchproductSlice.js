@@ -38,7 +38,6 @@ const searchProductSlice = createSlice({
             .addCase(searchProduct.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.findProduct = action.payload;
-                console.log(action.payload)
             })
             .addCase(searchProduct.rejected, (state, action) => {
                 state.status = 'failed';
@@ -47,7 +46,6 @@ const searchProductSlice = createSlice({
             .addCase(fetchProduct.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.findProduct = action.payload;
-                console.log(action.payload);
             });
     },
 

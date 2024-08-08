@@ -39,7 +39,7 @@ function CenterMode() {
                 <Slider {...settings}>
                     {
                         barcandy.items && barcandy.items.map((item, index) => (
-                            <Box
+                            <Box key={index}
                                 sx={{
                                     width: '100%',
                                     backgroundColor: `${item.backgroundColor}`,

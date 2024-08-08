@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 
 export default function Footer() {
   return (
-    <Box maxWidth="false" disableGutters
+    <Container maxWidth="false" disableGutters
       sx={{
         width: "100%",
         height: "auto",
@@ -26,6 +26,6 @@ export default function Footer() {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </Container>
   );
 };
