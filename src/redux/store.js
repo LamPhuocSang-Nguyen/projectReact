@@ -2,6 +2,7 @@ import carouselSlide from "./carouselSlide";
 import productSlice from "./productSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import showbarcandySlice from "./showbarcandySlice";
+import searchProductSlice from "./searchproductSlice";
 
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
         product:productSlice,
         carousel: carouselSlide,
         barcandy: showbarcandySlice,
+        findProduct: searchProductSlice,
     }
 })
 

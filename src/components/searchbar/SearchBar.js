@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import "./SearchBar.css";
-import { searchProduct } from '../../redux/productSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { searchProduct } from '../../redux/searchproductSlice';
+import { useDispatch } from 'react-redux';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -66,6 +66,7 @@ export default function SearchBar() {
       }
     }
   }
+
 
   
   return (
