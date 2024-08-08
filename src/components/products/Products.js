@@ -43,8 +43,8 @@ export default function Products() {
   // }));
 
   return (
-    <Container>
-      <Grid container spacing={2}>
+    <Container maxWidth="false" disableGutters>
+      <Grid container>
         {product.items && product.items.map((item,index) => (
           <Grid key={index} item>
             <Product
@@ -66,7 +66,7 @@ export default function Products() {
       >
         <Stack spacing={2}>
           <Typography>Page: {currentPage}</Typography>
-          <Pagination count={10} page={currentPage} onChange={handlePageChange} />
+          <Pagination count={7} page={currentPage} onChange={handlePageChange} />
         </Stack>
       </Grid>
 

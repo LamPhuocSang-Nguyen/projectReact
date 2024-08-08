@@ -56,13 +56,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const {product} = useSelector((state)=>state.product);
 
 
   const handleInput = (event)=>{
     if (event.key === 'Enter') {
       const name = event.target.value;
-      dispatch(searchProduct(name));
+      if (name.trim() !== "") {
+        dispatch(searchProduct(name));
+      }
     }
   }
 
