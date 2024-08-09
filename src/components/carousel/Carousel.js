@@ -41,7 +41,7 @@ function Carousel() {
   }
   useEffect(() => {
     if (myRef.current) {
-      console.log(myRef.current); // This logs the <img> element to the console
+      /*console.log(myRef.current); // This logs the <img> element to the console*/
 
       // Adding a class to the element
       myRef.current.classList.add('custom-image-class');

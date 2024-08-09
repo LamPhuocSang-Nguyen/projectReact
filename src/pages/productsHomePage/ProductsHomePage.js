@@ -39,7 +39,7 @@ export default function ProductsHomePage() {
       <Grid container>
         {findProduct.items && findProduct.items.map((item, index) => (
           <Grid key={index} item>
-            <Box  sx={{width:"100%",backgroundColor:`${item.backgroundColor}`}}>
+            <Box mouse sx={{width:"100%",backgroundColor:`${item.backgroundColor}`}}>
             <Product
               key={item.beanId}
               id={item.beanId}

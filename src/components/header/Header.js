@@ -15,15 +15,23 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { setBackGround } from "../../redux/carouselSlide";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext";
+import { doSignOut } from "../../firebase/auth";
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 
 
 export default function Header() {
   const pages = ["Products", "Pricing", "Blog", "Feature", "About"];
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const settings = ["signIn", "signUp"]
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
-  const currentBackground = useSelector((state) => state.carousel.currentBackground)
+  const currentBackground = useSelector((state) => state.carousel.currentBackground);
+  const { currentUser } = useAuth();
+  const { userLoggedIn } = useAuth();
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [cart, setCart] = useState(0);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -61,6 +69,17 @@ export default function Header() {
     },
   });
 
+
+  const OndoSignOut = async (e) => {
+    e.preventDefault();
+    if (!isSigningIn) {
+      setIsSigningIn(true);
+      doSignOut().catch(err => {
+        setErrorMessage(err.message);
+        setIsSigningIn(false);
+      });
+    }
+  };
   return (
     <ThemeProvider theme={darkTheme}>
       <Container maxWidth="false" disableGutters color="primary">
@@ -139,7 +158,7 @@ export default function Header() {
                     fontSize: "14px",
                     fontWeight: "700",
                     textTransform: "uppercase",
-                    padding:"30px",
+                    padding: "30px",
                     fontFamily: "merel,sans-serif",
                   }}
                 >
@@ -151,7 +170,7 @@ export default function Header() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Remy Sharp" src={userLoggedIn ? currentUser.photoURL : "/static/images/avatar/2.jpg"} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -170,11 +189,20 @@ export default function Header() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center"><Link to={'/login'}>{setting}</Link></Typography>
-                  </MenuItem>
-                ))}
+                {userLoggedIn ? (<MenuItem onClick={handleCloseUserMenu}>
+                  <Box display="flex" flexDirection="column" width="100%" alignContent="space-around">
+                    <Typography textAlign="center" sx={{ marginBottom: "20px" }}>Profile</Typography>
+                    <Typography textAlign="center" onClick={OndoSignOut}>signOut</Typography>
+                    <Box display="flex" justifyContent={"space-around"} sx={{marginTop:"15px"}}>
+                      <Typography><LocalMallOutlinedIcon /></Typography>
+                      <Typography>{cart}</Typography></Box>
+                  </Box>
+                </MenuItem>)
+                  : settings.map((item, index) => (
+                    <MenuItem key={index} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center"><Link to={"/" + item}>{item}</Link></Typography>
+                    </MenuItem>
+                  ))}
               </Menu>
             </Box>
           </Toolbar>

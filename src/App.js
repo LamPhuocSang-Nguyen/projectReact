@@ -6,17 +6,20 @@ import ProductsHomePage from "./pages/productsHomePage/ProductsHomePage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Login from "./components/auth/login/login"
+import Register from './components/auth/register/register';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/projectReact" element={<Home />} />
         <Route path="/productsHomePage" element={<ProductsHomePage />} />
         {/* <Route path="/detail/:id" element={<ProductDetail />} /> */}
         {/* <Route path="/ShowCats" element={<ShowCats />} /> */}
         {/* <Route path="/*" element={<NotFound />} /> */}
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signIn" element={<Login />}></Route>
+        <Route path="/signUp" element={<Register />}></Route>
       </Routes>
     </Router>
   );
