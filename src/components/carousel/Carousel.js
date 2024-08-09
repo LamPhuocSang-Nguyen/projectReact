@@ -10,7 +10,8 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { Container, Grid, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBackGround } from '../../redux/carouselSlide';
-import "./Carousel.css"
+import "./Carousel.css";
+import {useRef, useEffect} from "react";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -19,6 +20,7 @@ function Carousel() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const { carousel } = useSelector((state) => state.carousel);
+  const myRef = useRef(null);
   // const maxSteps = carousel.length;
 
   // const handleNext = () => {
@@ -29,6 +31,7 @@ function Carousel() {
   //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
   // };
 
+
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
@@ -36,6 +39,15 @@ function Carousel() {
   const getbackground = (a) => {
     dispatch(setBackGround(a));
   }
+  useEffect(() => {
+    if (myRef.current) {
+      console.log(myRef.current); // This logs the <img> element to the console
+
+      // Adding a class to the element
+      myRef.current.classList.add('custom-image-class');
+    }
+  }, [myRef.current]);
+
 
 
   return (
@@ -72,7 +84,10 @@ function Carousel() {
                         backgroundColor: `${step.bg}`,
                         display: "flex", 
                         alignItems: "center",
+                        
                       }}
+                      ref={myRef} 
+                      className="MuiBox-root css-1ul3npa"
                       src={step.imgPath}
                       alt={`Carousel image ${index}`} />
                   </Grid>
@@ -99,35 +114,6 @@ function Carousel() {
             </div>
           ))}
         </AutoPlaySwipeableViews>
-        {/* <MobileStepper
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          nextButton={
-            <Button
-              size="small"
-              onClick={handleNext}
-              disabled={activeStep === maxSteps - 1}
-            >
-              Next
-              {theme.direction === 'rtl' ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
-            </Button>
-          }
-          backButton={
-            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-              {theme.direction === 'rtl' ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
-              Back
-            </Button>
-          }
-        /> */}
       </Box>
     </Container>
   );

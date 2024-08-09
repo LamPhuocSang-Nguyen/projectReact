@@ -5,6 +5,8 @@ import "./App.css"
 import ProductsHomePage from "./pages/productsHomePage/ProductsHomePage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Login from "./components/auth/login/login"
+
 function App() {
   return (
     <Router>
@@ -14,6 +16,7 @@ function App() {
         {/* <Route path="/detail/:id" element={<ProductDetail />} /> */}
         {/* <Route path="/ShowCats" element={<ShowCats />} /> */}
         {/* <Route path="/*" element={<NotFound />} /> */}
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
     </Router>
   );

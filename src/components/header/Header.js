@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { setBackGround } from "../../redux/carouselSlide";
+import { Link } from "react-router-dom";
 
 
 export default function Header() {
@@ -171,7 +172,7 @@ export default function Header() {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Typography textAlign="center"><Link to={'/login'}>{setting}</Link></Typography>
                   </MenuItem>
                 ))}
               </Menu>

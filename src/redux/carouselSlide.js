@@ -12,7 +12,7 @@ const initialState = {
       bg: "#ae1533",
       imgPath:
         "https://cdn-tp1.mozu.com/9046-m1/cms/files/90ca9dcb-9729-45a1-85df-cab0c7a25029",
-        name:"Cotton candy"
+        name:"Verry Cherry"
     },
     {
       bg: "#0e7534",
@@ -21,11 +21,15 @@ const initialState = {
         name:"Green Apple"
     },
     {
-      bg: "#f97d42",
-      imgPath:
-        "https://cdn-tp1.mozu.com/9046-m1/cms/files/1ae622c0-30f0-4c58-8ef2-6425c4be45c6",
-        name:"Verry Cherry"
+      bg:"#fb9c72",
+      imgPath:"https://cdn-tp1.mozu.com/9046-m1/cms/files/6dc35adc-e7d0-4443-a1c1-ace286a59dc2",
+      name:"Cotton candy"
     },
+    {
+      bg:"#fb9c72",
+      imgPath:"https://cdn-tp1.mozu.com/9046-m1/cms/files/1ae622c0-30f0-4c58-8ef2-6425c4be45c6",
+      name:"orange sherbet"
+    }
   ],
   currentBackground:"",
   status: "start",

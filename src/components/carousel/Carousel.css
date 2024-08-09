@@ -1,20 +1,20 @@
-.MuiGrid-grid-xs-6{
-    position: relative;
+.MuiGrid-grid-xs-6 {
+  position: relative;
 }
 
-.MuiGrid-grid-xs-6 section h2{
-    width: 400px;
-    height: 400px;
-    color:#fff;
-    font-size: 96px;
-    letter-spacing: -5px;
-    position: absolute;
-    top: 30%;
-    left:20%;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-family: merel, sans-serif;
-    line-height: 1.4;
+.MuiGrid-grid-xs-6 section h2 {
+  width: 400px;
+  height: 400px;
+  color: #fff;
+  font-size: 96px;
+  letter-spacing: -5px;
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: merel, sans-serif;
+  line-height: 1.4;
 }
 
 /* @media screen and (max-width: 768px){
@@ -69,3 +69,29 @@
     }
 }
  */
+
+.custom-image-class {
+  animation-iteration-count: 4;
+  animation: cus 6s linear 1s infinite alternate;
+}
+@keyframes cus {
+  0% {
+    transform: rotateX(50deg);
+  }
+
+  25% {
+    transform: rotateX(50deg);
+  }
+
+  50% {
+    transform: rotateX(-50deg);
+  }
+
+  75% {
+    transform: rotateX(50deg);
+  }
+
+  100% {
+    transform: rotateX(-50deg);
+  }
+}
