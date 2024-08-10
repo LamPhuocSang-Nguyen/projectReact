@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProduct } from "../../redux/productSlice";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Product from "../product/Product";
 import Pagination from "@mui/material/Pagination";
@@ -43,17 +43,26 @@ export default function Products() {
   // }));
 
   return (
-    <Container maxWidth="false" disableGutters>
+    <Box sx={{ flexGrow: 1 }}>
       <Grid container>
         {product.items && product.items.map((item,index) => (
-          <Grid key={index} item>
-            <Product
-              key={item.beanId}
-              id={item.beanId}
-              flavorName={item.flavorName}
-              description={item.description}
-              imageUrl={item.imageUrl}
-            />
+          <Grid key={index} item xs={2} sm={4}> 
+              <Box
+                mouse
+                sx={{
+                  width: "100%",
+                  backgroundColor: `${item.backgroundColor}`,
+                  textAlign:"center",
+                }}
+              >
+                <Product
+                  key={item.beanId}
+                  id={item.beanId}
+                  flavorName={item.flavorName}
+                  description={item.description}
+                  imageUrl={item.imageUrl}
+                />
+              </Box>
           </Grid>
         ))}
       </Grid>
@@ -65,12 +74,11 @@ export default function Products() {
        alignItems="center"
       >
         <Stack spacing={2}>
-          <Typography>Page: {currentPage}</Typography>
           <Pagination count={7} page={currentPage} onChange={handlePageChange} />
         </Stack>
       </Grid>
 
 
-    </Container>
+    </Box>
   );
 }

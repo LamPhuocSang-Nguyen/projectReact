@@ -35,6 +35,7 @@ export default function Login() {
       });
     }
   };
+  
   return (
     <Container maxWidth="xs" sx={{ mt: 10 }}>
       {userLoggedIn && navigate("/")}

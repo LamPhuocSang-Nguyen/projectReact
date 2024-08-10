@@ -12,7 +12,7 @@ const initialState = {
     currentPage:1
 }
 export const fetchProduct = createAsyncThunk('barcandy/fetchProduct', async(page) =>{
-    const respone = await axios.get(`${url}?pageIndex=${page}&pageSize=50`);
+    const respone = await axios.get(`${url}?pageIndex=${page}&pageSize=40`);
     return respone.data;
 });
 
