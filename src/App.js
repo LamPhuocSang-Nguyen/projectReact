@@ -14,12 +14,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projectReact" element={<Home />} />
-        <Route path="/productsHomePage" element={<ProductsHomePage />} />
+        <Route path="/projectReact/productsHomePage" element={<ProductsHomePage />} />
         {/* <Route path="/detail/:id" element={<ProductDetail />} /> */}
         {/* <Route path="/ShowCats" element={<ShowCats />} /> */}
         {/* <Route path="/*" element={<NotFound />} /> */}
-        <Route path="/signIn" element={<Login />}></Route>
-        <Route path="/signUp" element={<Register />}></Route>
+        <Route path="/projectReact/signIn" element={<Login />}></Route>
+        <Route path="/projectReact/signUp" element={<Register />}></Route>
       </Routes>
     </Router>
   );

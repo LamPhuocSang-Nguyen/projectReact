@@ -77,7 +77,7 @@ export default function SearchBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', color:'#232323', fontSize:'30px' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', color:'#232323', fontSize:'30px', fontWeight:"900" } }}
           >
             single flavours
           </Typography>

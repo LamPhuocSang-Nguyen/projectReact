@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,20 +13,18 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { setBackGround } from "../../redux/carouselSlide";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
 import { doSignOut } from "../../firebase/auth";
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import {fetchProduct,filterGluten, filterSugarFree, filterSeason, filterKosher} from "../../redux/searchproductSlice";
 
-
-export default function Header() {
-  const pages = ["Products", "Pricing", "Blog", "Feature", "About"];
-  const settings = ["signIn", "signUp"]
+export default function Headerproduct() {
+    const dispatch = useDispatch();
+  const pages = ["Home", "Glutenfree", "Sugarfree", "seasonal", "kosher"];
+  const settings = ["signIn", "signUp"];
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const dispatch = useDispatch();
-  const currentBackground = useSelector((state) => state.carousel.currentBackground);
   const { currentUser } = useAuth();
   const { userLoggedIn } = useAuth();
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -49,22 +47,10 @@ export default function Header() {
   };
 
 
-  const isValidColor = (color) => {
-    const s = new Option().style;
-    s.color = color;
-    return s.color !== '';
-  };
-  const validBackgroundColor = isValidColor(currentBackground) ? currentBackground : '#000000'; // Default to black if invalid
-
-  useEffect(() => {
-    dispatch(setBackGround(0))
-  }, [dispatch])
-
-
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: validBackgroundColor,
+        main: "#fff",
       },
     },
   });
@@ -83,6 +69,25 @@ export default function Header() {
     }
   };
 
+  const fetchProductFnc = ()=>{
+    dispatch(fetchProduct(1));
+  }
+
+  const filterGlutenFnc = ()=>{
+    dispatch(filterGluten());
+  }
+
+  const filterSugarFnc = ()=>{
+    dispatch(filterSugarFree());
+  }
+
+  const filterfilterSeasonFnc = ()=>{
+    dispatch(filterSeason());
+  }
+
+  const filterKosherFnc = () =>{
+    dispatch(filterKosher());
+  }
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -123,11 +128,13 @@ export default function Header() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"><Link to="/projectReact/productsHomePage">{page}</Link></Typography>
-                  </MenuItem>
-                ))}
+                <Box onClick={handleCloseNavMenu} display="flex" flexDirection="column" width="100%" alignContent="space-around" >
+                    <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={fetchProductFnc}>Home</Typography>
+                    <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={filterGlutenFnc}>Glutenfree</Typography>
+                    <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={filterSugarFnc}>Sugarfree</Typography>
+                    <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={filterfilterSeasonFnc}>Seasonal</Typography>
+                    <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={filterKosherFnc}>Kosher</Typography>
+                </Box>
               </Menu>
             </Box>
             {/* <Typography
@@ -152,13 +159,28 @@ export default function Header() {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
-                  href="/projectReact/productsHomePage"
+                  onClick={()=>{
+                    if(page==="Home"){
+                        fetchProductFnc();
+                    }
+                    else if(page==="Glutenfree"){
+                        filterGlutenFnc();
+                    }
+                    else if(page==="Sugarfree"){
+                        filterSugarFnc();
+                    }
+                    else if(page==="kosher"){
+                        filterKosherFnc();
+                    }
+                    else{
+                        filterfilterSeasonFnc();
+                    }
+                  }}
                   sx={{
                     my: 2,
                     display: "block",
                     marginLeft: "30px",
-                    color: "#fff",
+                    color: "black",
                     fontSize: "14px",
                     fontWeight: "700",
                     textTransform: "uppercase",

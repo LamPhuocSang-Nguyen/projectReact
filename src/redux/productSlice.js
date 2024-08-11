@@ -12,7 +12,7 @@ const initialState = {
     currentPage:1
 }
 export const fetchProduct = createAsyncThunk('product/fetchProduct', async(page) =>{
-    const respone = await axios.get(`${url}?pageIndex=${page}&pageSize=18`);
+    const respone = await axios.get(`${url}?pageIndex=${page}&pageSize=20`);
     return respone.data;
 });
 

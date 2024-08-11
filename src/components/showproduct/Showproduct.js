@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
-import { fetchProduct } from "../../redux/searchproductSlice";
+import { fetchProduct,filterGluten,filterSugarFree,filterSeason } from "../../redux/searchproductSlice";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Product from "../../components/product/Product";
 import { useSelector, useDispatch } from "react-redux";
+import {Container} from "@mui/system";
 
 export function Showproduct() {
   const dispatch = useDispatch();
@@ -14,6 +15,9 @@ export function Showproduct() {
 
   useEffect(() => {
     dispatch(fetchProduct(1));
+    // dispatch(filterGluten());
+    // dispatch(filterSugarFree());
+    // dispatch(filterSeason());
   }, [dispatch]);
 
   if (status === "loading") {
@@ -25,18 +29,18 @@ export function Showproduct() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Container maxWidth="false" disableGutters>
       <Grid container>
         {findProduct.items &&
           findProduct.items.map((item, index) => (
-            <Grid key={index} item xs={2} sm={4}>
+            <Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3}>
               <Box
                 mouse
                 sx={{
                   width: "100%",
                   backgroundColor: `${item.backgroundColor}`,
-                  textAlign:"center",
-                  height:"600px",
+                  textAlign: "center",
+                  height: "600px",
                 }}
               >
                 <Product
@@ -50,6 +54,6 @@ export function Showproduct() {
             </Grid>
           ))}
       </Grid>
-    </Box>
+    </Container>
   );
 }

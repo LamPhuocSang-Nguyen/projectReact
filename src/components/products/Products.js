@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProduct } from "../../redux/productSlice";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Product from "../product/Product";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 // import Paper from '@mui/material/Paper';
 // import { styled } from '@mui/material/styles';
-
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -43,16 +41,17 @@ export default function Products() {
   // }));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Container maxWidth="false" disableGutters>
       <Grid container>
-        {product.items && product.items.map((item,index) => (
-          <Grid key={index} item xs={2} sm={4}> 
+        {product.items &&
+          product.items.map((item, index) => (
+            <Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3}>
               <Box
                 mouse
                 sx={{
                   width: "100%",
                   backgroundColor: `${item.backgroundColor}`,
-                  textAlign:"center",
+                  textAlign: "center",
                 }}
               >
                 <Product
@@ -63,22 +62,24 @@ export default function Products() {
                   imageUrl={item.imageUrl}
                 />
               </Box>
-          </Grid>
-        ))}
+            </Grid>
+          ))}
       </Grid>
 
       <Grid
-      container
-      direction="row"
-      justifyContent="center"
-       alignItems="center"
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
       >
         <Stack spacing={2}>
-          <Pagination count={7} page={currentPage} onChange={handlePageChange} />
+          <Pagination
+            count={7}
+            page={currentPage}
+            onChange={handlePageChange}
+          />
         </Stack>
       </Grid>
-
-
-    </Box>
+    </Container>
   );
 }

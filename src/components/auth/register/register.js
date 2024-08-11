@@ -39,7 +39,7 @@ const Register = () => {
 
   return (
     <>
-      {userLoggedIn && <Navigate to={'/home'} replace={true} />}
+      {userLoggedIn && <Navigate to={'/projectReact'} replace={true} />}
 
       <Container maxWidth="sm" sx={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Paper elevation={3} sx={{ p: 4 }}>
@@ -109,7 +109,7 @@ const Register = () => {
             <Box mt={2} textAlign="center">
               <Typography variant="body2">
                 Already have an account?{' '}
-                <Link to={'/signIn'} style={{ textDecoration: 'none', fontWeight: 'bold' }}>
+                <Link to={'/projectReact/signIn'} style={{ textDecoration: 'none', fontWeight: 'bold' }}>
                   Continue
                 </Link>
               </Typography>

@@ -38,7 +38,7 @@ export default function Login() {
   
   return (
     <Container maxWidth="xs" sx={{ mt: 10 }}>
-      {userLoggedIn && navigate("/")}
+      {userLoggedIn && navigate("/projectReact")}
       <Box sx={{ boxShadow: 3, p: 4, borderRadius: 2 }}>
         <Typography variant="h5" align="center" gutterBottom>
           Welcome Back
@@ -80,7 +80,7 @@ export default function Login() {
           </Button>
         </form>
         <Typography align="center" variant="body2" sx={{ mt: 2 }}>
-          Don't have an account? <Link to={'/signUp'}>Sign up</Link>
+          Don't have an account? <Link to={'/projectReact/signUp'}>Sign up</Link>
         </Typography>
         <Divider sx={{ my: 2 }}>OR</Divider>
         <Button
