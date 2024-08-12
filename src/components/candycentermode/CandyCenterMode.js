@@ -23,38 +23,6 @@ function CenterMode() {
     return <div>Error: {error}</div>;
   }
 
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          backgroundColor: "#008080",
-          borderRadius: "100px",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          backgroundColor: "#008080",
-          borderRadius: "100px",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
-
   const settings = {
     className: "center",
     centerMode: true,
@@ -62,8 +30,6 @@ function CenterMode() {
     centerPadding: "60px",
     slidesToShow: 14,
     speed: 500,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1600,
@@ -111,7 +77,7 @@ function CenterMode() {
   };
 
   return (
-    <Container maxWidth="false" disableGutters>
+    <Container maxWidth="false">
       <Slider {...settings} className="slider-container">
         {barcandy.items &&
           barcandy.items.map((item, index) => (
@@ -162,7 +128,7 @@ function CenterMode() {
                   zIndex: "2",
                 }}
               >
-                {item.title} {/* Assuming there's a title field in your items */}
+                {item.title}
               </Typography>
             </Box>
           ))}
