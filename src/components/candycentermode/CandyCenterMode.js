@@ -62,8 +62,8 @@ function CenterMode() {
     centerPadding: "60px",
     slidesToShow: 14,
     speed: 500,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1600,
@@ -111,7 +111,7 @@ function CenterMode() {
   };
 
   return (
-    <Container maxWidth="false">
+    <Container maxWidth="false" disableGutters>
       <Slider {...settings} className="slider-container">
         {barcandy.items &&
           barcandy.items.map((item, index) => (
