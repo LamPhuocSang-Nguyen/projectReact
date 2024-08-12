@@ -10,6 +10,9 @@ import { IconButton, Typography } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { addItem } from "../../redux/cartSlice";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 export function Showproduct() {
   const dispatch = useDispatch();
@@ -63,7 +66,7 @@ export function Showproduct() {
       <Grid container>
         {parsedData &&
           parsedData.map((item, index) => (
-            <Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3}>
+            <Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3} data-aos="fade-up" data-aos-anchor-placement="center-bottom">
               <Box
                 mouse
                 sx={{

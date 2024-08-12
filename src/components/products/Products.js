@@ -8,6 +8,10 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 // import Paper from '@mui/material/Paper';
 // import { styled } from '@mui/material/styles';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -45,7 +49,9 @@ export default function Products() {
       <Grid container>
         {product.items &&
           product.items.map((item, index) => (
-            <Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3}>
+            <Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3} data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000">
               <Box
                 sx={{
                   width: "100%",

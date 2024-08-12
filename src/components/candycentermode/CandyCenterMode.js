@@ -4,6 +4,9 @@ import Slider from "react-slick";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../../redux/showbarcandySlice";
 import "./CandyCenterMode.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 function CenterMode() {
   const dispatch = useDispatch();
@@ -89,6 +92,7 @@ function CenterMode() {
                 flexDirection: "column",
                 padding: "10px", // Added padding for spacing
               }}
+              
             >
               <Box
                 component="img"
