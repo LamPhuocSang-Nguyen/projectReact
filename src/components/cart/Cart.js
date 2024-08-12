@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {addItem, removeItem, clearCart} from "../../redux/cartSlice"
+import {loadItem, addItem, removeItem, clearCart} from "../../redux/cartSlice"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -14,11 +14,16 @@ import Button from '@mui/material/Button';
 
 export default function Cart() {
     const dispatch = useDispatch();
-    const {cart} = useSelector(state=>state.cart)
+    const { cart } = useSelector(state=>state.cart)
+
+    React.useEffect(()=>{
+        dispatch(loadItem())
+    },[])
+
+    console.log(cart)
 
 
   return (
-    <div>
     <TableContainer component={Paper}>
         <Table hover>
             <TableHead>
@@ -33,13 +38,13 @@ export default function Cart() {
                 {
                     cart&&cart.map((item,index)=>(
                         <TableRow key={index}>
-                            <TableCell>{item.beanId}</TableCell>
-                            <TableCell>{item.flavorName}</TableCell>
-                            <TableCell><Box component="img" sx={{width:"50px", height:"50px"}} src={item.imageUrl} alt='img'></Box></TableCell>
-                            <TableCell>
-                                <Button onClick={()=>dispatch(addItem(item))} color='warning'>+</Button>
+                            <TableCell sx={{textAlign:"center"}}>{item.beanId}</TableCell>
+                            <TableCell sx={{textAlign:"center"}}>{item.flavorName}</TableCell>
+                            <TableCell sx={{textAlign:"center"}}><Box component="img" sx={{width:"50px", height:"50px"}} src={item.imageUrl} alt='img'></Box></TableCell>
+                            <TableCell sx={{textAlign:"center"}}>
+                                {/* <Button onClick={()=>dispatch(addItem(item))} color='warning'>+</Button> */}
                                 <span>{item.quantity}</span>
-                                <Button onClick={()=>dispatch(removeItem(item.id))} color='danger'>-</Button>
+                                {/* <Button onClick={()=>dispatch(removeItem(item.beanId))} color='danger'>-</Button> */}
                             </TableCell>
                         </TableRow>
                     ))
@@ -47,8 +52,7 @@ export default function Cart() {
             </TableBody>
         </Table>
 
-        <Button onClick={()=>dispatch(clearCart())} color='warning'>Clear cart</Button>
+        <Button onClick={()=>dispatch(clearCart())} color='warning' sx={{textAlign:"center"}}>Clear cart</Button>
     </TableContainer>
-</div>
   )
 }

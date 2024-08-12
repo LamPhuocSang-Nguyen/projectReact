@@ -68,7 +68,7 @@ function Carousel() {
                           sm: "400px",
                           md: "500px",
                           lg: "600px",
-                          xl: "70vh"
+                          xl: "85vh"
                         },
                         objectFit: "cover",
                         backgroundColor: `${step.bg}`,
@@ -101,7 +101,6 @@ function Carousel() {
                         sx={{
                           fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem', xl: '4rem' },
                           marginBottom: { xs: 2, md: 4 },
-                          fontSize:"70px",
                           color:"#fff",
                           fontWeight:"900",
                           textTransform:"uppercase",

@@ -81,6 +81,7 @@ export default function Header() {
     }
   };
 
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container maxWidth="false" disableGutters color="primary">
@@ -120,13 +121,31 @@ export default function Header() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link to="/projectReact/productsHomePage">{page}</Link>
-                    </Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem key={1} onClick={handleCloseNavMenu} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2px' }} >
+                  <Typography textAlign="center" sx={{ mb: 2}}> 
+                    <Link to="/projectReact/productsHomePage" style={{
+                      textDecoration: 'none',
+                      color: 'red', // Change to desired color
+                      fontWeight: 'bold',
+                    }}>Products</Link>
+                  </Typography>
+
+                  <Typography key={2} textAlign="center" sx={{ mb: 2}}> 
+                    <Link to="/projectReact/cartPage"  style={{
+                      textDecoration: 'none',
+                      color: 'red', // Change to desired color
+                      fontWeight: 'bold',
+                    }}>Cart</Link>
+                  </Typography>
+
+                  <Typography key={3} textAlign="center" sx={{ mb: 2}}>
+                    <Link to="/projectReact/productsHomePage"  style={{
+                      textDecoration: 'none',
+                      color: 'red', // Change to desired color
+                      fontWeight: 'bold',
+                    }}>About</Link>
+                  </Typography>
+                </MenuItem>
               </Menu>
             </Box>
             {/* <Typography
@@ -155,9 +174,10 @@ export default function Header() {
               }}
             >
               <Button
+                component={Link}
                 key={1}
                 onClick={handleCloseNavMenu}
-                href="/projectReact/productsHomePage"
+                to="/projectReact/productsHomePage"
                 sx={{
                   my: 2,
                   display: "block",
@@ -166,16 +186,17 @@ export default function Header() {
                   fontSize: "14px",
                   fontWeight: "700",
                   textTransform: "uppercase",
-                  padding: "30px",
                   fontFamily: "merel,sans-serif",
+                  textDecoration: "none",
                 }}
-              >
-                Products
+              >Products
               </Button>
               <Button
+                component={Link}
                 key={2}
+                to="/projectReact/cartPage"
                 onClick={handleCloseNavMenu}
-                href="/projectReact/cartPage"
+                // href="/projectReact/cartPage"
                 sx={{
                   my: 2,
                   display: "block",
@@ -184,7 +205,7 @@ export default function Header() {
                   fontSize: "14px",
                   fontWeight: "700",
                   textTransform: "uppercase",
-                  padding: "30px",
+        
                   fontFamily: "merel,sans-serif",
                 }}
               >
@@ -194,7 +215,7 @@ export default function Header() {
               <Button
                 key={3}
                 onClick={handleCloseNavMenu}
-                href="/projectReact/cartPage"
+                // href="/projectReact/productsHomePage"
                 sx={{
                   my: 2,
                   display: "block",
@@ -203,7 +224,7 @@ export default function Header() {
                   fontSize: "14px",
                   fontWeight: "700",
                   textTransform: "uppercase",
-                  padding: "30px",
+          
                   fontFamily: "merel,sans-serif",
                 }}
               >
