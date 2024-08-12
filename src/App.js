@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Login from "./components/auth/login/login"
 import Register from './components/auth/register/register';
+import CartPage from './pages/CartPage/CartPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         {/* <Route path="/*" element={<NotFound />} /> */}
         <Route path="/projectReact/signIn" element={<Login />}></Route>
         <Route path="/projectReact/signUp" element={<Register />}></Route>
+        <Route path="/projectReact/cartPage" element={<CartPage />}></Route>
       </Routes>
     </Router>
   );

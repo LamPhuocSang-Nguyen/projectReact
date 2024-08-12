@@ -3,6 +3,7 @@ import { Container } from '@mui/material';
 import SearchBarPage from '../SearchBarPage/SearchBarPage';
 import { Showproduct } from '../../components/showproduct/Showproduct';
 import HeaderProductPage from '../HeaderProductPage/HeaderProductPage';
+import Footer from '../../components/footer/Footer';
 
 
 
@@ -15,6 +16,7 @@ export default function ProductsHomePage() {
       <HeaderProductPage />
       <SearchBarPage />
       <Showproduct />
+      <Footer />
     </Container>
   )
 }

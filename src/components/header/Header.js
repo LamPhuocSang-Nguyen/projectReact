@@ -17,21 +17,22 @@ import { setBackGround } from "../../redux/carouselSlide";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
 import { doSignOut } from "../../firebase/auth";
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 
 export default function Header() {
-  const pages = ["Products", "Pricing", "Blog", "Feature", "About"];
-  const settings = ["signIn", "signUp"]
+  const pages = ["Products", "Cart", "About"];
+  const settings = ["signIn", "signUp"];
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
-  const currentBackground = useSelector((state) => state.carousel.currentBackground);
+  const currentBackground = useSelector(
+    (state) => state.carousel.currentBackground
+  );
+  const { cart } = useSelector((state) => state.cart);
   const { currentUser } = useAuth();
   const { userLoggedIn } = useAuth();
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [cart, setCart] = useState(0);
+  // const [errorMessage, setErrorMessage] = useState('');
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -48,18 +49,18 @@ export default function Header() {
     setAnchorElUser(null);
   };
 
-
   const isValidColor = (color) => {
     const s = new Option().style;
     s.color = color;
-    return s.color !== '';
+    return s.color !== "";
   };
-  const validBackgroundColor = isValidColor(currentBackground) ? currentBackground : '#000000'; // Default to black if invalid
+  const validBackgroundColor = isValidColor(currentBackground)
+    ? currentBackground
+    : "#000000"; // Default to black if invalid
 
   useEffect(() => {
-    dispatch(setBackGround(0))
-  }, [dispatch])
-
+    dispatch(setBackGround(0));
+  }, [dispatch]);
 
   const darkTheme = createTheme({
     palette: {
@@ -69,31 +70,27 @@ export default function Header() {
     },
   });
 
-
-
-
   const OndoSignOut = async (e) => {
     e.preventDefault();
     if (!isSigningIn) {
       setIsSigningIn(true);
-      doSignOut().catch(err => {
-        setErrorMessage(err.message);
+      doSignOut().catch((err) => {
+        // setErrorMessage(err.message);
         setIsSigningIn(false);
       });
     }
   };
-
 
   return (
     <ThemeProvider theme={darkTheme}>
       <Container maxWidth="false" disableGutters color="primary">
         <AppBar position="static" sx={{ padding: "20px" }}>
           <Toolbar disableGutters>
-            <Box component="img"
+            <Box
+              component="img"
               src="https://cdn-tp1.mozu.com/9046-m1/cms/files/1de6e67e-4768-45de-8bce-8f95dbd7a031?max=114"
               alt="logo"
-            >
-            </Box>
+            ></Box>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -125,7 +122,9 @@ export default function Header() {
               >
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"><Link to="/projectReact/productsHomePage">{page}</Link></Typography>
+                    <Typography textAlign="center">
+                      <Link to="/projectReact/productsHomePage">{page}</Link>
+                    </Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -148,33 +147,81 @@ export default function Header() {
             >
               <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/1de6e67e-4768-45de-8bce-8f95dbd7a031?max=114" alt="logo"></img>
               {/* LOGO */}
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, marginLeft: "20%" }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  href="/projectReact/productsHomePage"
-                  sx={{
-                    my: 2,
-                    display: "block",
-                    marginLeft: "30px",
-                    color: "#fff",
-                    fontSize: "14px",
-                    fontWeight: "700",
-                    textTransform: "uppercase",
-                    padding: "30px",
-                    fontFamily: "merel,sans-serif",
-                  }}
-                >
-                  {page}
-                </Button>
-              ))}
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                marginLeft: "20%",
+              }}
+            >
+              <Button
+                key={1}
+                onClick={handleCloseNavMenu}
+                href="/projectReact/productsHomePage"
+                sx={{
+                  my: 2,
+                  display: "block",
+                  marginLeft: "30px",
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "700",
+                  textTransform: "uppercase",
+                  padding: "30px",
+                  fontFamily: "merel,sans-serif",
+                }}
+              >
+                Products
+              </Button>
+              <Button
+                key={2}
+                onClick={handleCloseNavMenu}
+                href="/projectReact/cartPage"
+                sx={{
+                  my: 2,
+                  display: "block",
+                  marginLeft: "30px",
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "700",
+                  textTransform: "uppercase",
+                  padding: "30px",
+                  fontFamily: "merel,sans-serif",
+                }}
+              >
+                Cart
+              </Button>
+
+              <Button
+                key={3}
+                onClick={handleCloseNavMenu}
+                href="/projectReact/cartPage"
+                sx={{
+                  my: 2,
+                  display: "block",
+                  marginLeft: "30px",
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "700",
+                  textTransform: "uppercase",
+                  padding: "30px",
+                  fontFamily: "merel,sans-serif",
+                }}
+              >
+                About
+              </Button>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src={userLoggedIn ? currentUser.photoURL : "/static/images/avatar/2.jpg"} />
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={
+                      userLoggedIn
+                        ? currentUser.photoURL
+                        : "/static/images/avatar/2.jpg"
+                    }
+                  />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -193,20 +240,46 @@ export default function Header() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {userLoggedIn ? (<MenuItem onClick={handleCloseUserMenu}>
-                  <Box display="flex" flexDirection="column" width="100%" alignContent="space-around">
-                    <Typography textAlign="center" sx={{ marginBottom: "20px" }}>Profile</Typography>
-                    <Typography textAlign="center" onClick={OndoSignOut}>signOut</Typography>
-                    <Box display="flex" justifyContent={"space-around"} sx={{marginTop:"15px"}}>
-                      <Typography><LocalMallOutlinedIcon /></Typography>
-                      <Typography>{cart}</Typography></Box>
-                  </Box>
-                </MenuItem>)
-                  : settings.map((item, index) => (
+                {userLoggedIn ? (
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      width="100%"
+                      alignContent="space-around"
+                    >
+                      <Typography
+                        textAlign="center"
+                        sx={{ marginBottom: "20px" }}
+                      >
+                        Profile
+                      </Typography>
+                      <Typography textAlign="center" onClick={OndoSignOut}>
+                        signOut
+                      </Typography>
+                      <Box
+                        display="flex"
+                        justifyContent={"space-around"}
+                        sx={{ marginTop: "15px" }}
+                      >
+                        <Typography>
+                          <LocalMallOutlinedIcon />
+                        </Typography>
+                        <Typography>
+                          <Link to="/projectReact/cartPage">{cart.length}</Link>
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </MenuItem>
+                ) : (
+                  settings.map((item, index) => (
                     <MenuItem key={index} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center"><Link to={"/projectReact/" + item}>{item}</Link></Typography>
+                      <Typography textAlign="center">
+                        <Link to={"/projectReact/" + item}>{item}</Link>
+                      </Typography>
                     </MenuItem>
-                  ))}
+                  ))
+                )}
               </Menu>
             </Box>
           </Toolbar>

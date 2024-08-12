@@ -47,7 +47,6 @@ export default function Products() {
           product.items.map((item, index) => (
             <Grid key={index} item xs={12} sm={6} md={6} lg={4} xl={3}>
               <Box
-                mouse
                 sx={{
                   width: "100%",
                   backgroundColor: `${item.backgroundColor}`,

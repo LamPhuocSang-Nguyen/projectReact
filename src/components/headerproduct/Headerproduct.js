@@ -18,18 +18,20 @@ import { useAuth } from "../../contexts/authContext";
 import { doSignOut } from "../../firebase/auth";
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import {fetchProduct,filterGluten, filterSugarFree, filterSeason, filterKosher} from "../../redux/searchproductSlice";
+import { useNavigate } from 'react-router-dom';
 
 export default function Headerproduct() {
     const dispatch = useDispatch();
-  const pages = ["Home", "Glutenfree", "Sugarfree", "seasonal", "kosher"];
+    const { cart } = useSelector((state) => state.cart);
+  const pages = ["Home", "Product", "Glutenfree", "Sugarfree", "seasonal", "kosher"];
   const settings = ["signIn", "signUp"];
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { currentUser } = useAuth();
   const { userLoggedIn } = useAuth();
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [cart, setCart] = useState(0);
+  // const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -63,7 +65,7 @@ export default function Headerproduct() {
     if (!isSigningIn) {
       setIsSigningIn(true);
       doSignOut().catch(err => {
-        setErrorMessage(err.message);
+        // setErrorMessage(err.message);
         setIsSigningIn(false);
       });
     }
@@ -129,7 +131,8 @@ export default function Headerproduct() {
                 }}
               >
                 <Box onClick={handleCloseNavMenu} display="flex" flexDirection="column" width="100%" alignContent="space-around" >
-                    <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={fetchProductFnc}>Home</Typography>
+                  <Typography textAlign="center" sx={{ marginBottom: "20px" }}><Link to="/projectReact">Home</Link></Typography>
+                    <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={fetchProductFnc}>Product</Typography>
                     <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={filterGlutenFnc}>Glutenfree</Typography>
                     <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={filterSugarFnc}>Sugarfree</Typography>
                     <Typography textAlign="center" sx={{ marginBottom: "20px" }} onClick={filterfilterSeasonFnc}>Seasonal</Typography>
@@ -137,30 +140,16 @@ export default function Headerproduct() {
                 </Box>
               </Menu>
             </Box>
-            {/* <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/1de6e67e-4768-45de-8bce-8f95dbd7a031?max=114" alt="logo"></img>
-              {/* LOGO */}
+
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, marginLeft: "20%" }}>
               {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={()=>{
-                    if(page==="Home"){
+                    if(page === "Home"){
+                      navigate("/projectReact");
+                    }
+                    else if(page==="Product"){
                         fetchProductFnc();
                     }
                     else if(page==="Glutenfree"){
@@ -221,7 +210,8 @@ export default function Headerproduct() {
                     <Typography textAlign="center" onClick={OndoSignOut}>signOut</Typography>
                     <Box display="flex" justifyContent={"space-around"} sx={{marginTop:"15px"}}>
                       <Typography><LocalMallOutlinedIcon /></Typography>
-                      <Typography>{cart}</Typography></Box>
+                      <Typography>{cart.length}</Typography>
+                    </Box>
                   </Box>
                 </MenuItem>)
                   : settings.map((item, index) => (
