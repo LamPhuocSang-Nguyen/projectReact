@@ -18,17 +18,7 @@ export default function Product(props) {
   const open = Boolean(anchorEl);
 
   return (
-    <div>
-      {/* {
-                <Box component="img" key={id}
-                sx={{
-                    width: '350px',
-                    height: "300px",
-                }}
-                src={imageUrl}
-                alt="candy"
-                />
-            } */}
+    <Box>
       <Typography
         aria-owns={open ? "mouse-over-popover" : undefined}
         aria-haspopup="true"
@@ -38,9 +28,18 @@ export default function Product(props) {
         <Box
           component="img"
           key={id}
-          sx={{ width: "350px", height: "300px" }}
+          sx={{
+            width: {
+              xs: "100%", // 100% width on extra small screens (mobile)
+              sm: "200px", // 200px width on small screens (tablet)
+              md: "250px", // 250px width on medium screens (small laptops)
+              lg: "290px", // 290px width on large screens (desktops)
+            },
+            height: "auto", // Maintain aspect ratio
+            maxHeight: "300px", // Max height for larger screens
+          }}
           src={imageUrl}
-          alt="candy"
+          alt={flavorName}
         />
       </Typography>
       <Popover
@@ -62,8 +61,8 @@ export default function Product(props) {
         disableRestoreFocus
         disableScrollLock
       >
-        <Typography sx={{ p: 1 }}>{flavorName}</Typography>
+        <Typography sx={{ p: 1, fontSize: "14px" }}>{flavorName}</Typography>
       </Popover>
-    </div>
+    </Box>
   );
 }

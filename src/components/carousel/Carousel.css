@@ -1,21 +1,3 @@
-.MuiGrid-grid-xs-6 {
-  position: relative;
-}
-
-.MuiGrid-grid-xs-6 section h2 {
-  width: 400px;
-  height: 400px;
-  color: #fff;
-  font-size: 96px;
-  letter-spacing: -5px;
-  position: absolute;
-  top: 30%;
-  left: 20%;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-family: merel, sans-serif;
-  line-height: 1.4;
-}
 
 /* @media screen and (max-width: 768px){
     .MuiGrid-grid-xs-6 section h2{

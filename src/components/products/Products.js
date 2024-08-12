@@ -51,6 +51,7 @@ export default function Products() {
                   width: "100%",
                   backgroundColor: `${item.backgroundColor}`,
                   textAlign: "center",
+                  height:"400px",
                 }}
               >
                 <Product

@@ -16,7 +16,6 @@ export default function Home() {
     <Container maxWidth="false" disableGutters>
       <HeaderPages/>
       <Carousel />
-      {/* <BarCandyPage /> */}
       <CenterMode />
       <Title />
       <Products />
